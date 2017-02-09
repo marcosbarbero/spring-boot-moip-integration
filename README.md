@@ -1,6 +1,6 @@
 Moip integration SDK for spring-boot applications
 ---
-Module to integrate Moip SDK on spring boot apps
+Module to integrate [Moip](https://moip.com.br/) SDK on spring boot apps
 
 Adding Project Lombok Agent
 ---
@@ -25,11 +25,29 @@ Add the dependency on pom.xml
 </dependency>
 ```
 
-Sample configuration
+Sample configuration for Basic Authentication
 
 ```
+moip:
+  security:
+    basic:
+      token: # Basic auth token
+      key: # Basic auth key
+  environment: production #default value sandbox
+```
+
+Sample configuration for OAuth Authentication
 
 ```
+moip:
+  security:
+    oauth:
+      access-token: # AccessToken provided by moip
+  environment: production #default value sandbox
+```
+
+>**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).
+>**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.
 
 Contributing
 ---

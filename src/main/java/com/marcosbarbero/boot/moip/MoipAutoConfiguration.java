@@ -34,9 +34,9 @@ public class MoipAutoConfiguration {
         Authentication authentication;
         MoipProperties.Security security = moipProperties.getSecurity();
         if (!StringUtils.isEmpty(security.getBasic().getKey())) {
-            authentication = new BasicAuth(security.getBasic().getKey(), security.getBasic().getToken());
+            authentication = new BasicAuth(security.getBasic().getToken(), security.getBasic().getKey());
         } else {
-            authentication = new OAuth(security.getOAuth().getAccessToken());
+            authentication = new OAuth(security.getOauth().getAccessToken());
         }
         return authentication;
     }
