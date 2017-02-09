@@ -26,13 +26,13 @@ public class MoipProperties {
     }
 
     @Data
-    static class Basic {
+    public static class Basic {
         private String token;
         private String key;
     }
 
     @Data
-    static class OAuth {
+    public static class OAuth {
         private String accessToken;
     }
 
