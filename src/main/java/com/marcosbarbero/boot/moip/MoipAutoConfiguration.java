@@ -13,4 +13,5 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(MoipProperties.class)
 public class MoipAutoConfiguration {
 
+
 }

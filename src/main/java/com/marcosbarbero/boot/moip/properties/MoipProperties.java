@@ -2,6 +2,7 @@ package com.marcosbarbero.boot.moip.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import br.com.moip.Client;
 import lombok.Data;
 
 import static com.marcosbarbero.boot.moip.properties.MoipProperties.PREFIX;
@@ -16,6 +17,7 @@ public class MoipProperties {
     public static final String PREFIX = "moip";
 
     private Security security = new Security();
+    private Environment environment;
 
     @Data
     public static class Security {
@@ -24,13 +26,28 @@ public class MoipProperties {
     }
 
     @Data
-    public static class Basic {
+    static class Basic {
         private String token;
         private String key;
     }
 
     @Data
-    public static class OAuth {
+    static class OAuth {
         private String accessToken;
+    }
+
+    public enum Environment {
+        PRODUCTION(Client.PRODUCTION),
+        SANDBOX(Client.SANDBOX);
+
+        private String url;
+
+        Environment(final String url) {
+            this.url = url;
+        }
+
+        public String getUrl() {
+            return this.url;
+        }
     }
 }
