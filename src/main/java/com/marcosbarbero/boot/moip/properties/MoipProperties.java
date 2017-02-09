@@ -1,6 +1,8 @@
 package com.marcosbarbero.boot.moip.properties;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.util.StringUtils;
 
 import br.com.moip.Client;
 import lombok.Data;
@@ -13,16 +15,30 @@ import static com.marcosbarbero.boot.moip.properties.MoipProperties.PREFIX;
  */
 @Data
 @ConfigurationProperties(PREFIX)
-public class MoipProperties {
+public class MoipProperties implements InitializingBean {
     public static final String PREFIX = "moip";
 
     private Security security = new Security();
-    private Environment environment;
+    private Environment environment = Environment.SANDBOX;
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (!StringUtils.isEmpty(this.security.getOauth().getAccessToken())) {
+            return;
+        }
+
+        if (!StringUtils.isEmpty(this.security.getBasic().getKey())
+                && !StringUtils.isEmpty(this.security.getBasic().getToken())) {
+            return;
+        }
+
+        throw new IllegalArgumentException("You need to set basic or oauth authentication properties.");
+    }
 
     @Data
     public static class Security {
         private Basic basic = new Basic();
-        private OAuth oAuth = new OAuth();
+        private OAuth oauth = new OAuth();
     }
 
     @Data
