@@ -164,6 +164,7 @@
             <groupId>br.com.moip</groupId>
             <artifactId>java-sdk</artifactId>
             <version>${moip-java-sdk.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
