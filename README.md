@@ -46,7 +46,7 @@ moip:
   environment: production #default value sandbox
 ```
 
->**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).
+>**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).  
 >**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.
 
 Contributing
