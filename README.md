@@ -50,7 +50,23 @@ moip:
 
 >**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).  
 >**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.  
->**Note 3**: The `moip.health-indicator-enabled` enables health check for moip services.
+
+Health Check testing
+---
+In order to enabled heal check for Moip services will be needed to turn this flag on:
+
+``` 
+moip.health-indicator-enabled: true
+```
+
+The default value is `false` and there's a need to add the actuator dependency on the project:
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
 
 ######In the code
 ```
