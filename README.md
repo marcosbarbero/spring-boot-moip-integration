@@ -29,6 +29,7 @@ Sample configuration for Basic Authentication
 
 ```
 moip:
+  health-indicator-enabled: true # Default false
   security:
     basic:
       token: # Basic auth token
@@ -40,6 +41,7 @@ Sample configuration for OAuth Authentication
 
 ```
 moip:
+  health-indicator-enabled: true # Default false
   security:
     oauth:
       access-token: # AccessToken provided by moip
@@ -47,7 +49,8 @@ moip:
 ```
 
 >**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).  
->**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.
+>**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.  
+>**Note 3**: The `moip.health-indicator-enabled` enables health check for moip services.
 
 Contributing
 ---
