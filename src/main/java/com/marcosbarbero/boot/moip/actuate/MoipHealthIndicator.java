@@ -1,4 +1,4 @@
-package com.marcosbarbero.boot.moip.actuator;
+package com.marcosbarbero.boot.moip.actuate;
 
 import com.marcosbarbero.boot.moip.properties.MoipProperties;
 
