@@ -52,6 +52,12 @@ moip:
 >**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.  
 >**Note 3**: The `moip.health-indicator-enabled` enables health check for moip services.
 
+######In the code
+```
+@Autowired
+private br.com.moip.API api;
+```
+
 Contributing
 ---
 
