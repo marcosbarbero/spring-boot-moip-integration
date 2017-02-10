@@ -20,6 +20,7 @@ public class MoipProperties implements InitializingBean {
 
     private Security security = new Security();
     private Environment environment = Environment.SANDBOX;
+    private boolean healthIndicatorEnabled;
 
     @Override
     public void afterPropertiesSet() throws Exception {
