@@ -49,6 +49,12 @@ moip:
 >**Note 1**: All the security keys are provided by  [Moip](https://moip.com.br/).  
 >**Note 2**: The available values for `moip.environment` property are `production` or `sandbox` having the last as default value.
 
+######In the code
+```
+@Autowired
+private br.com.moip.API api;
+```
+
 Contributing
 ---
 
