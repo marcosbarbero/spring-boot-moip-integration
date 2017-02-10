@@ -56,10 +56,10 @@ Health Check testing
 In order to enabled heal check for Moip services will be needed to turn this flag on:
 
 ``` 
-moip.health-indicator-enabled: true
+moip.health-indicator-enabled: true #default false
 ```
 
-The default value is `false` and there's a need to add the actuator dependency on the project:
+Also there's a need to add the actuator dependency on the project:
 
 ```
 <dependency>
