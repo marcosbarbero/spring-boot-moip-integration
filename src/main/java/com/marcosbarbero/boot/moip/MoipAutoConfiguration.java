@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 
 import br.com.moip.API;
 import br.com.moip.Client;
@@ -35,8 +36,8 @@ public class MoipAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(name = PREFIX + "health-indicator-enabled", havingValue = "true")
-    public HealthIndicator moipHealthIndicator() {
-        return new MoipHealthIndicator();
+    public HealthIndicator moipHealthIndicator(final MoipProperties moipProperties, final RestTemplate restTemplate) {
+        return new MoipHealthIndicator(moipProperties, restTemplate);
     }
 
     private Authentication auth(final MoipProperties moipProperties) {
