@@ -13,34 +13,35 @@ import br.com.moip.Client;
 import br.com.moip.authentication.Authentication;
 import br.com.moip.authentication.BasicAuth;
 import br.com.moip.authentication.OAuth;
+import lombok.RequiredArgsConstructor;
 
 /**
  * @author Marcos Barbero
  * @since 2017-02-09
  */
 @Configuration
+@RequiredArgsConstructor
 @ConditionalOnClass(API.class)
 @EnableConfigurationProperties(MoipProperties.class)
 public class MoipAutoConfiguration {
 
+    private final MoipProperties moipProperties;
+
     @Bean
-    public API api(final MoipProperties moipProperties) {
-        return new API(this.client(moipProperties));
+    public API api() {
+        return new API(this.client());
     }
 
-    private Authentication auth(final MoipProperties moipProperties) {
-        Authentication authentication;
-        MoipProperties.Security security = moipProperties.getSecurity();
+    private Client client() {
+        return new Client(this.moipProperties.getEnvironment().getUrl(), authentication());
+    }
+
+    private Authentication authentication() {
+        MoipProperties.Security security = this.moipProperties.getSecurity();
         if (!StringUtils.isEmpty(security.getBasic().getKey())) {
-            authentication = new BasicAuth(security.getBasic().getToken(), security.getBasic().getKey());
-        } else {
-            authentication = new OAuth(security.getOauth().getAccessToken());
+            return new BasicAuth(security.getBasic().getToken(), security.getBasic().getKey());
         }
-        return authentication;
-    }
-
-    private Client client(final MoipProperties moipProperties) {
-        return new Client(moipProperties.getEnvironment().getUrl(), auth(moipProperties));
+        return new OAuth(security.getOauth().getAccessToken());
     }
 
 }
