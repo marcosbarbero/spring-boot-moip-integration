@@ -2,6 +2,7 @@ package com.marcosbarbero.boot.moip.properties;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.util.StringUtils;
 
 import br.com.moip.Client;
@@ -18,7 +19,9 @@ import static com.marcosbarbero.boot.moip.properties.MoipProperties.PREFIX;
 public class MoipProperties implements InitializingBean {
     public static final String PREFIX = "moip";
 
+    @NestedConfigurationProperty
     private Security security = new Security();
+
     private Environment environment = Environment.SANDBOX;
     private boolean healthIndicatorEnabled;
 
@@ -38,7 +41,11 @@ public class MoipProperties implements InitializingBean {
 
     @Data
     public static class Security {
+
+        @NestedConfigurationProperty
         private Basic basic = new Basic();
+
+        @NestedConfigurationProperty
         private OAuth oauth = new OAuth();
     }
 

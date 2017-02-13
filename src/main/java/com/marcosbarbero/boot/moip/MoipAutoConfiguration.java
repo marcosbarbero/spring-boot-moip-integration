@@ -19,8 +19,8 @@ import br.com.moip.authentication.OAuth;
  * @since 2017-02-09
  */
 @Configuration
-@EnableConfigurationProperties(MoipProperties.class)
 @ConditionalOnClass(API.class)
+@EnableConfigurationProperties(MoipProperties.class)
 public class MoipAutoConfiguration {
 
     @Bean

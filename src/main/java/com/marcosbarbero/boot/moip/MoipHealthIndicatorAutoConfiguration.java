@@ -4,13 +4,12 @@ import com.marcosbarbero.boot.moip.actuate.MoipHealthIndicator;
 import com.marcosbarbero.boot.moip.properties.MoipProperties;
 
 import org.springframework.boot.actuate.health.AbstractHealthIndicator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.web.client.RestTemplate;
 
 import static com.marcosbarbero.boot.moip.properties.MoipProperties.PREFIX;
@@ -21,19 +20,19 @@ import static com.marcosbarbero.boot.moip.properties.MoipProperties.PREFIX;
  */
 @Configuration
 @ConditionalOnClass(AbstractHealthIndicator.class)
-@ConditionalOnProperty(name = PREFIX + ".health-indicator-enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = PREFIX, name = "health-indicator-enabled", havingValue = "true")
 public class MoipHealthIndicatorAutoConfiguration {
 
     @Bean
-    @Order(Ordered.HIGHEST_PRECEDENCE)
     @ConditionalOnMissingBean(RestTemplate.class)
     public RestTemplate restOperations() {
         return new RestTemplate();
     }
 
     @Bean
-    public MoipHealthIndicator moipHealthIndicator(final MoipProperties moipProperties, final RestTemplate
-            restTemplate) {
+    @ConditionalOnBean(RestTemplate.class)
+    public MoipHealthIndicator moipHealthIndicator(final MoipProperties moipProperties,
+                                                   final RestTemplate restTemplate) {
         return new MoipHealthIndicator(moipProperties, restTemplate);
     }
 }
