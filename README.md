@@ -68,7 +68,7 @@ Also there's a need to add the actuator dependency on the project:
 </dependency>
 ```
 
-######In the code
+###### In the code
 ```
 @Autowired
 private br.com.moip.API api;
@@ -82,7 +82,7 @@ and follows a very standard Github development process, using Github tracker for
 and merging pull requests into master. If you want to contribute even something trivial
 please do not hesitate, but follow the guidelines below.
 
-###Code of Conduct
+### Code of Conduct
 
 This project adheres to the Contributor Covenant [code of conduct](https://github.com/marcosbarbero/spring-boot-moip-integration/blob/master/docs/code-of-conduct.adoc).
 By participating, you are expected to uphold this code. Please report unacceptable behavior to marcos.hgb@gmail.com.
